@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUser extends Document {
   name: string;
@@ -12,13 +12,11 @@ const UserSchema: Schema = new Schema({
   toJSON: {
     virtuals: true,
     transform: function (doc, ret) {
-      delete ret._id;
-      delete ret.__v;
+      delete (ret as any)._id;
+      delete (ret as any).__v;
     }
   },
   toObject: { virtuals: true }
 });
 
-const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
-
-export default User;
+export default mongoose.model<IUser>('User', UserSchema);

@@ -13,13 +13,15 @@ export default function Home() {
   const [sending, setSending] = useState(false);
   const flechadaRef = useRef<FlechadaHandle>(null);
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
   useEffect(() => {
     fetchUsers();
   }, []);
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch('/api/users');
+      const res = await fetch(`${API_BASE_URL}/users`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setUsers(data);
@@ -51,9 +53,9 @@ export default function Home() {
       const targetRect = targetEl.getBoundingClientRect();
       flechadaRef.current.shoot(senderRect, targetRect);
     }
-
+    
     try {
-      const res = await fetch('/api/interactions', {
+      const res = await fetch(`${API_BASE_URL}/interactions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
