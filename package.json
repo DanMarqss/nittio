@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Nittio Monorepo (Frontend + Backend)",
   "scripts": {
-    "start": "npm run start:backend & npm run start:frontend",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && npm run dev",
     "start:frontend": "cd frontend && npm run dev",
     "install:all": "cd backend && npm install && cd ../frontend && npm install"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
