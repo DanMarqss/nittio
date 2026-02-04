@@ -1,8 +1,13 @@
 {
   "name": "nittio-monorepo",
   "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "description": "Nittio Monorepo (Frontend + Backend)",
   "scripts": {
+    "dev": "npm start",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && npm run dev",
     "start:frontend": "cd frontend && npm run dev",

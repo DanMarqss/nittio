@@ -1,64 +1,66 @@
-# Nittio - Monorepo
+# Nittio - Frontend Challenge
 
-Este projeto é um teste técnico full-stack (Node.js + Next.js) que implementa uma plataforma social interativa.
+Esta é a implementação do desafio frontend da Nittio, focando em uma experiência de usuário "Gen Z", vibrante e interativa para eventos.
+
+## Funcionalidades Implementadas
+
+### 1. Design System & UI/UX
+- **Tema Escuro (Dark Mode):** Base `#0a0a0a` para imersão total.
+- **Cor Primária:** Azul Elétrico (`#0055FF`) usado para ações principais e destaques.
+- **Tipografia:** Fontes sem serifa modernas e limpas.
+- **Grid Responsivo:** Layout de 12 colunas adaptável para mobile e desktop.
+
+### 2. Página de Evento
+- **Hero Section:** Poster do evento com efeito de hover e parallax.
+- **Tabs de Navegação:** Alternância suave entre "Detalhes" e "Social" usando Framer Motion.
+- **Grid de Participantes:** Visualização dos amigos e outros participantes do evento.
+
+### 3. Funcionalidade "Flechada" (Cupid Arrow)
+- **Conceito:** Uma interação divertida onde o usuário pode "flechar" alguém que também vai ao evento.
+- **Animação:** Ao clicar em "Flechar", uma seta animada sai da posição do usuário atual e voa até o alvo.
+- **Tecnologia:** Implementado com `Framer Motion` e cálculos de geometria (ângulo e distância) em tempo real.
 
 ## Estrutura do Projeto
 
-O projeto está organizado como um monorepo com duas pastas principais:
-
-- **backend/**: API Node.js com Express e Mongoose (TypeScript).
-- **frontend/**: Aplicação Next.js (TypeScript) com Tailwind CSS.
-
-## Funcionalidades
-
-- Listagem de usuários.
-- Envio de "flechadas" (interações) entre usuários.
-- Animação visual da flechada no frontend.
-- Backend robusto com suporte a MongoDB e modo Mock (fallback).
-
-## Pré-requisitos
-
-- Node.js (v18+)
-- MongoDB (Opcional - o sistema roda em modo Mock se não encontrar o banco)
+- `/frontend`: Aplicação Next.js 13+ (App Router).
+- `/backend`: API simples em Node.js/Express (Mock data).
 
 ## Como Rodar
 
-1. Instale as dependências de ambos os projetos:
+### Pré-requisitos
+- Node.js 18+
+- NPM
+
+### Passos
+
+1. **Instalar dependências (Raiz):**
    ```bash
-   npm run install:all
+   npm install
    ```
 
-2. Inicie a aplicação (Front e Back simultaneamente):
+2. **Iniciar o Backend:**
    ```bash
-   npm start
+   cd backend
+   npm run dev
    ```
+   O servidor rodará em `http://localhost:5000`.
 
-   - O Frontend estará disponível em: `http://localhost:3000`
-   - O Backend estará disponível em: `http://localhost:5000`
+3. **Iniciar o Frontend:**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   Acesse `http://localhost:3000`.
 
 ## Decisões Técnicas
 
-- **Monorepo**: Facilita a gestão de dependências e execução do projeto em um único comando.
-- **Backend**:
-  - **Arquitetura em Camadas**: Controllers, Models, Routes e Config separados.
-  - **Mock Mode**: Implementado um fallback para dados em memória caso o MongoDB não esteja disponível, garantindo que o avaliador consiga testar a aplicação sem configurar banco de dados local.
-  - **TypeScript**: Tipagem forte para maior segurança e manutenibilidade.
-- **Frontend**:
-  - **Next.js App Router**: Utilizando a versão mais recente e performática.
-  - **Tailwind CSS**: Estilização rápida e responsiva.
-  - **Framer Motion**: Utilizado para criar a animação da flecha de forma fluida.
-  - **Componentização**: `UserCard` e `FlechadaLayer` isolados para reutilização e clareza.
+- **Framer Motion:** Escolhido pela fluidez e facilidade em criar animações complexas de layout (`layoutId`) e elementos voadores.
+- **Tailwind CSS:** Para desenvolvimento rápido e consistente seguindo o design system.
+- **Arquitetura de Componentes:** 
+  - `FlechadaLayer`: Camada superior isolada para animações globais, evitando problemas de z-index e overflow.
+  - `Header`: Componente reutilizável de navegação.
 
-## API Endpoints
-
-- `GET /api/users`: Lista todos os usuários.
-- `POST /api/interactions`: Cria uma nova interação (flechada).
-  - Body: `{ senderId: string, receiverId: string }`
-
-## Diferenciais Implementados
-
-- ✅ Componentização bem definida
-- ✅ Feedback visual (loading, animação)
-- ✅ Organização de pastas clara (Monorepo)
-- ✅ Boas práticas de API (Status codes, tratamento de erros)
-- ✅ Fallback para Mock Mode (Zero config database)
+## Próximos Passos (Melhorias)
+- Integração com Banco de Dados Real (MongoDB).
+- Sistema de Notificações em Tempo Real (Socket.io).
+- Perfil detalhado do usuário.

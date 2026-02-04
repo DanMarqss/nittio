@@ -83,11 +83,32 @@ const FlechadaLayer = forwardRef<FlechadaHandle>((props, ref) => {
               marginTop: '-12px'
             }}
           >
-            <div className="text-pink-600 drop-shadow-lg filter">
-               {/* Custom SVG Arrow or Icon */}
-               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-               </svg>
+            <div className="relative">
+                {/* Alienzinho Cupid */}
+                <div className="absolute -top-6 -left-6 w-12 h-12 animate-pulse">
+                     <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,100,0.6)]">
+                        {/* Head */}
+                        <path d="M50 20 C30 20 15 35 15 55 C15 85 50 95 50 95 C50 95 85 85 85 55 C85 35 70 20 50 20 Z" fill="#00FF88" />
+                        {/* Eyes */}
+                        <ellipse cx="35" cy="50" rx="8" ry="12" fill="black" transform="rotate(15 35 50)" />
+                        <ellipse cx="65" cy="50" rx="8" ry="12" fill="black" transform="rotate(-15 65 50)" />
+                        <circle cx="37" cy="46" r="3" fill="white" />
+                        <circle cx="63" cy="46" r="3" fill="white" />
+                        {/* Antenna */}
+                        <path d="M50 20 L50 5" stroke="#00FF88" strokeWidth="3" />
+                        <circle cx="50" cy="5" r="4" fill="#00FF88" />
+                        {/* Smile */}
+                        <path d="M40 70 Q50 75 60 70" stroke="black" strokeWidth="2" fill="none" />
+                     </svg>
+                </div>
+                
+                {/* Arrow */}
+                <div className="text-primary-blue drop-shadow-[0_0_10px_rgba(0,85,255,0.5)] filter ml-2 mt-2">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-45deg)' }}>
+                        <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </div>
             </div>
           </motion.div>
         ))}
